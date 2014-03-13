@@ -6,8 +6,13 @@
 </p>
 
 <p>
-  <strong>Recalled:</strong>
-  <%= @item.recalled %>
+  <strong>Is Recalled?</strong>
+  <%= @item.is_recalled? ? "Yes" : "No" %>
+</p>
+
+<p>
+  <strong>Recall Reason</strong>
+  <%= @item.recall_reason %>
 </p>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |

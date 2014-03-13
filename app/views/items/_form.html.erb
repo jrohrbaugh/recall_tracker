@@ -16,9 +16,14 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :recalled %><br>
-    <%= f.check_box :recalled %>
+    <%= f.label :is_recalled %><br>
+    <%= f.check_box :is_recalled %>
   </div>
+  <div class="field">
+    <%= f.label :recall_reason %><br>
+    <%= f.text_field :recall_reason %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

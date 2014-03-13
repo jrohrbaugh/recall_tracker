@@ -4,7 +4,8 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Recalled</th>
+      <th>Recalled?</th>
+      <th>Recall Reason</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,7 +16,8 @@
     <% @items.each do |item| %>
       <tr>
         <td><%= item.name %></td>
-        <td><%= item.recalled ? "Alert: this item has been recalled" : "No" %></td>
+        <td><%= item.is_recalled? ? "Alert: this item has been recalled" : "No" %></td>
+        <td><%= item.recall_reason %></td>
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) %></td>
         <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>

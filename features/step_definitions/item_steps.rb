@@ -1,19 +1,26 @@
+require 'item'
+
 Given(/^I\'m logged in as a parent$/) do
 end
 
-class RecallApi
-  def self.recall(name)
-    @recalled_names ||= {}
-    @recalled_names[name] = true
-  end
-
-  def self.is_recalled?(name)
-    @recalled_names && @recalled_names[name]
-  end
-end 
-
 Given /^the item "([^\"]+)" has (not )?been recalled$/ do |item_name, not_txt|
-  RecallApi.recall(item_name) unless not_txt
+  if !@item_stubbed
+    class Item
+      def self.add_recall(item_name)
+        @mock_recalls ||= []
+        @mock_recalls << item_name
+      end
+
+      def self.check_recalled(item)
+        if @mock_recalls && @mock_recalls.include?(item.name)
+          item.is_recalled = true
+          item.recall_reason = "mock recall"
+        end
+      end
+    end
+    @item_stubbed = true
+  end
+  Item.add_recall(item_name) unless not_txt
 end
 
 When /^I add an item named "([^\"]+)"$/ do |item_name|
@@ -21,6 +28,7 @@ When /^I add an item named "([^\"]+)"$/ do |item_name|
   click_link("New Item")
   fill_in("Name", with: item_name)
   click_button("Create Item")
+  visit(items_path)
 
   @item = Item.find_by_name(item_name)
 end
