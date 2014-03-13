@@ -1,0 +1,13 @@
+<%- if flash[:alert] %>
+  <p class='alert error'><%= flash[:alert] %></p>
+<% end %>
+
+<%= form_for :session, url: {action: :create} do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %><br/>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %><br/>
+
+  <%= f.submit :Login %>
+<% end %>

@@ -1,5 +1,11 @@
 RecallTracker::Application.routes.draw do
   resources :items
+  resources :sessions
+  resources :registrations
+
+  get '/sign_in' => 'sessions#new', as: :sign_in
+  get '/logout' =>  'sessions#destroy', as: :logout
+  get '/sign_up' => 'registrations#new', as: :sign_up
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
