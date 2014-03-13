@@ -35,13 +35,13 @@ end
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
+  gem 'rspec-rails'
 end
 
 group :test do
   gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'
   gem 'database_cleaner'
-  gem 'rspec-rails'
 end
 
 # Use ActiveModel has_secure_password
