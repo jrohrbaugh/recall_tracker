@@ -39,18 +39,10 @@ Then /^I should (not )?see an alert$/ do |not_txt|
 end
 
 When /^I have (\d+) items$/ do |num|
-  num.to_i.times do |i|
-    Item.create(name: "Item #{i}")
-  end
 end
 
 Then /^I should have (\d+) items$/ do |num|
-  assert_equal num.to_i, Item.count
 end
 
 When /^I remove the first item$/ do
-  visit(items_path)
-  within :xpath, "//table/tbody/tr[1]" do
-    click_link "Destroy"
-  end
 end
